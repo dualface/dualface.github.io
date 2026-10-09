@@ -2,10 +2,64 @@ baseURL = "https://dualface.dev/"
 locale = "en-us"
 title = "dualface"
 theme = "PaperMod"
+enableRobotsTXT = true
+copyright = "© 2026 dualface"
+timeZone = "Asia/Singapore"
+
+[outputs]
+home = ["HTML", "RSS"]
+
+[[menus.main]]
+name = "Posts"
+pageRef = "/posts"
+weight = 10
+
+[[menus.main]]
+name = "About"
+pageRef = "/about"
+weight = 20
 
 [params]
+# Social metadata (OpenGraph / Twitter Card)
+env = "production"
+description = "Step-by-step notes from 20+ years of building software: working with a team of AI agents, building developer tools, and making an indie game."
+author = "dualface"
+# Default share image: static/images/share.png
+images = ["images/share.png"]
+defaultTheme = "auto"
+
+# Full text in RSS, for Buttondown RSS-to-email
+ShowFullTextinRSS = true
+
+# Tutorial-friendly features
 ShowCodeCopyButtons = true
+ShowToc = true
+TocOpen = false
 ShowReadingTime = true
+ShowPostNavLinks = true
+
+ShowShareButtons = false
+ShowBreadCrumbs = false
+
+[params.homeInfoParams]
+Title = "Hi, I'm dualface"
+Content = "I have been building software for more than 20 years. Here I share step-by-step notes on working with a team of AI agents, building developer tools, and making an indie game."
+
+[[params.socialIcons]]
+name = "x"
+url = "https://x.com/dualface"
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/dualface"
+
+[[params.socialIcons]]
+name = "buttondown"
+url = "https://buttondown.com/dualface"
+
+[[params.socialIcons]]
+name = "rss"
+url = "/index.xml"
 
 [markup.highlight]
 noClasses = false

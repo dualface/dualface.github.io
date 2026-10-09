@@ -1,0 +1,13 @@
+{{- /* Absolute image URLs, so images also work in RSS readers and newsletter emails. */ -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $src := .Destination -}}
+{{- if not $u.IsAbs -}}
+  {{- with .Page.Resources.Get $u.Path -}}
+    {{- $src = .Permalink -}}
+  {{- else -}}
+    {{- $src = .Destination | absURL -}}
+  {{- end -}}
+{{- end -}}
+<img src="{{ $src }}" alt="{{ .PlainText }}"
+  {{- with .Title }} title="{{ . }}"{{ end }} loading="lazy">
+{{- /* chomp trailing newline */ -}}

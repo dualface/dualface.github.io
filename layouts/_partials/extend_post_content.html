@@ -1,0 +1,44 @@
+{{- /*
+  文章正文之后的订阅框。PaperMod 在每篇文章正文后调用 extend_post_content.html。
+  只在 posts 下的文章显示，About 等页面不显示。
+
+  把下面 <form> 换成 Buttondown 后台提供的嵌入代码，
+  或者只把 dualface 换成你的 Buttondown 用户名。
+*/ -}}
+{{- if eq .Section "posts" }}
+<aside class="newsletter-box" aria-label="Newsletter">
+  <p class="newsletter-title">Get new posts by email</p>
+  <p class="newsletter-desc">One email per new post, no fixed schedule.</p>
+  <form
+    action="https://buttondown.com/api/emails/embed-subscribe/dualface"
+    method="post"
+    class="newsletter-form embeddable-buttondown-form">
+    <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+  <p class="newsletter-alt">Or follow via <a href="{{ "index.xml" | absURL }}">RSS</a>.</p>
+</aside>
+<style>
+  .newsletter-box {
+    margin: 48px 0 8px;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius, 8px);
+    background: var(--entry);
+  }
+  .newsletter-box .newsletter-title { margin: 0 0 4px; font-weight: 600; color: var(--primary); }
+  .newsletter-box .newsletter-desc,
+  .newsletter-box .newsletter-alt { margin: 0; font-size: 0.9em; color: var(--secondary); }
+  .newsletter-form { display: flex; gap: 8px; margin: 14px 0 10px; flex-wrap: wrap; }
+  .newsletter-form input {
+    flex: 1 1 220px; padding: 8px 12px; font: inherit;
+    color: var(--content); background: var(--theme);
+    border: 1px solid var(--border); border-radius: 6px;
+  }
+  .newsletter-form button {
+    padding: 8px 16px; font: inherit; cursor: pointer;
+    color: var(--theme); background: var(--primary);
+    border: none; border-radius: 6px;
+  }
+</style>
+{{- end }}
