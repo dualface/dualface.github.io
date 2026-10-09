@@ -1,0 +1,11 @@
+baseURL = "https://dualface.dev/"
+locale = "en-us"
+title = "dualface"
+theme = "PaperMod"
+
+[params]
+ShowCodeCopyButtons = true
+ShowReadingTime = true
+
+[markup.highlight]
+noClasses = false
