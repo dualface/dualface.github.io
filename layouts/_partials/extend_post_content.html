@@ -1,11 +1,20 @@
 {{- /*
   文章正文之后的订阅框。PaperMod 在每篇文章正文后调用 extend_post_content.html。
   只在 posts 下的文章显示，About 等页面不显示。
+  英文页显示 Buttondown 邮件订阅（邮件只发英文）；中文页显示微信公众号二维码。
 
   把下面 <form> 换成 Buttondown 后台提供的嵌入代码，
   或者只把 dualface 换成你的 Buttondown 用户名。
 */ -}}
 {{- if eq .Section "posts" }}
+{{- if eq .Language.Lang "cn" }}
+<aside class="newsletter-box" aria-label="微信公众号">
+  <p class="newsletter-title">关注微信公众号</p>
+  <p class="newsletter-desc">微信扫码关注，获取新文章。</p>
+  <img class="newsletter-qr" src="{{ "images/wechat-qr.png" | absURL }}" alt="微信公众号二维码" width="160" height="160" loading="lazy">
+  <p class="newsletter-alt">也可以用 <a href="{{ "index.xml" | absLangURL }}">RSS</a> 订阅。</p>
+</aside>
+{{- else }}
 <aside class="newsletter-box" aria-label="Newsletter">
   <p class="newsletter-title">Get new posts by email</p>
   <p class="newsletter-desc">One email per new post, no fixed schedule.</p>
@@ -18,6 +27,7 @@
   </form>
   <p class="newsletter-alt">Or follow via <a href="{{ "index.xml" | absURL }}">RSS</a>.</p>
 </aside>
+{{- end }}
 <style>
   .newsletter-box {
     margin: 48px 0 8px;
@@ -29,6 +39,7 @@
   .newsletter-box .newsletter-title { margin: 0 0 4px; font-weight: 600; color: var(--primary); }
   .newsletter-box .newsletter-desc,
   .newsletter-box .newsletter-alt { margin: 0; font-size: 0.9em; color: var(--secondary); }
+  .newsletter-box .newsletter-qr { display: block; margin: 14px 0 10px; }
   .newsletter-form { display: flex; gap: 8px; margin: 14px 0 10px; flex-wrap: wrap; }
   .newsletter-form input {
     flex: 1 1 220px; padding: 8px 12px; font: inherit;

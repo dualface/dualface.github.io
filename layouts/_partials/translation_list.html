@@ -1,0 +1,22 @@
+{{- /* Override of PaperMod translation_list.html: uses .Language.Label (LanguageName is deprecated since Hugo 0.158). */ -}}
+{{- if .IsTranslated -}}
+    {{- if (ne .Layout "search") }}
+        {{- if or (.Param "author") (.Param "ShowReadingTime") (not .Date.IsZero) }}
+            {{- printf "&nbsp;|&nbsp;" | safeHTML -}}
+        {{- end -}}
+    {{- end -}}
+    <span>{{- i18n "translations" | default "Translations" }}:</span>
+    <ul class="i18n_list">
+        {{- range .Translations }}
+        <li>
+            <a href="{{ .Permalink }}">
+                {{- if (and site.Params.displayFullLangName (.Language.Label)) }}
+                {{- .Language.Label | emojify -}}
+                {{- else }}
+                {{- .Lang | title -}}
+                {{- end -}}
+            </a>
+        </li>
+        {{- end }}
+    </ul>
+{{- end -}}

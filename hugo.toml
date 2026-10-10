@@ -1,5 +1,8 @@
 baseURL = "https://dualface.dev/"
-locale = "en-us"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+# Chinese word counting for reading time and summaries
+hasCJKLanguage = true
 title = "dualface"
 theme = "PaperMod"
 enableRobotsTXT = true
@@ -9,25 +12,9 @@ timeZone = "Asia/Singapore"
 [outputs]
 home = ["HTML", "RSS"]
 
-[[menus.main]]
-name = "Posts"
-pageRef = "/posts"
-weight = 10
-
-[[menus.main]]
-name = "Projects"
-pageRef = "/projects"
-weight = 15
-
-[[menus.main]]
-name = "About"
-pageRef = "/about"
-weight = 20
-
 [params]
 # Social metadata (OpenGraph / Twitter Card)
 env = "production"
-description = "Step-by-step notes from 20+ years of building software: working with a team of AI agents, building developer tools, and making an indie game."
 author = "dualface"
 # Default share image: static/images/share.png
 images = ["images/share.png"]
@@ -46,25 +33,102 @@ ShowPostNavLinks = true
 ShowShareButtons = false
 ShowBreadCrumbs = false
 
-[params.homeInfoParams]
-Title = "Hi, I'm dualface"
-Content = "I have been building software for more than 20 years. Here I share step-by-step notes on working with a team of AI agents, building developer tools, and making an indie game."
-
-[[params.socialIcons]]
-name = "x"
-url = "https://x.com/dualface"
-
-[[params.socialIcons]]
-name = "github"
-url = "https://github.com/dualface"
-
-[[params.socialIcons]]
-name = "buttondown"
-url = "https://buttondown.com/dualface"
-
-[[params.socialIcons]]
-name = "rss"
-url = "/index.xml"
+# Language switch shows "English" / "中文" instead of the language key
+displayFullLangName = true
 
 [markup.highlight]
 noClasses = false
+
+# English at the site root, Chinese under /cn/.
+# Posts pair by file name in one bundle: index.md (en) and index.cn.md (cn).
+[languages.en]
+locale = "en"
+label = "English"
+weight = 1
+title = "dualface"
+
+[languages.en.params]
+description = "Step-by-step notes from 20+ years of building software: working with a team of AI agents, building developer tools, and making an indie game."
+
+[languages.en.params.footer]
+text = "[Get new posts by email](https://buttondown.com/dualface)"
+
+[languages.en.params.homeInfoParams]
+Title = "Hi, I'm dualface"
+Content = "I have been building software for more than 20 years. Here I share step-by-step notes on working with a team of AI agents, building developer tools, and making an indie game."
+
+[[languages.en.params.socialIcons]]
+name = "x"
+url = "https://x.com/dualface"
+
+[[languages.en.params.socialIcons]]
+name = "github"
+url = "https://github.com/dualface"
+
+[[languages.en.params.socialIcons]]
+name = "buttondown"
+url = "https://buttondown.com/dualface"
+
+[[languages.en.params.socialIcons]]
+name = "rss"
+url = "/index.xml"
+
+[[languages.en.menus.main]]
+name = "Posts"
+pageRef = "/posts"
+weight = 10
+
+[[languages.en.menus.main]]
+name = "Projects"
+pageRef = "/projects"
+weight = 15
+
+[[languages.en.menus.main]]
+name = "About"
+pageRef = "/about"
+weight = 20
+
+[languages.cn]
+locale = "zh-CN"
+label = "中文"
+weight = 2
+title = "dualface"
+
+[languages.cn.params]
+# Numeric dates: the localized long date format falls back to English month names for "cn"
+DateFormat = "2006-01-02"
+description = "20 多年软件开发的分步笔记：带着一组 AI agent 协作开发、做开发者工具、做独立游戏。"
+
+[languages.cn.params.footer]
+text = "微信公众号：[扫码关注](/images/wechat-qr.png)"
+
+[languages.cn.params.homeInfoParams]
+Title = "你好，我是 dualface"
+Content = "我写软件已经 20 多年了。这里分享分步笔记：带着一组 AI agent 协作开发、做开发者工具、做独立游戏。"
+
+[[languages.cn.params.socialIcons]]
+name = "x"
+url = "https://x.com/dualface"
+
+[[languages.cn.params.socialIcons]]
+name = "github"
+url = "https://github.com/dualface"
+
+[[languages.cn.params.socialIcons]]
+name = "rss"
+url = "/cn/index.xml"
+
+[[languages.cn.menus.main]]
+name = "文章"
+pageRef = "/posts"
+weight = 10
+
+[[languages.cn.menus.main]]
+name = "项目"
+pageRef = "/projects"
+weight = 15
+
+[[languages.cn.menus.main]]
+name = "关于"
+pageRef = "/about"
+weight = 20
