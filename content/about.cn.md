@@ -36,5 +36,10 @@ ShowPostNavLinks = false
 
 - X：[@dualface](https://x.com/dualface)
 - GitHub：[dualface](https://github.com/dualface)
-- 微信公众号：[扫码关注](/images/wechat-qr.png)
 - RSS：[dualface.dev/cn/index.xml](/cn/index.xml)
+
+## 微信公众号
+
+微信扫码关注，获取新文章。
+
+![微信公众号二维码](/images/wechat-qr.png)
