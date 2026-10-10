@@ -1,0 +1,7 @@
+{{- /* Pixel-art logo. Usage: {{< logo >}} or {{< logo size="160" >}} */ -}}
+{{- $size := .Get "size" | default "160" -}}
+<p class="site-logo"><img src="{{ "images/avatar.svg" | relURL }}" alt="dualface logo" width="{{ $size }}" height="{{ $size }}"></p>
+<style>
+  .site-logo { margin: 0 0 24px; }
+  .site-logo img { display: block; border-radius: 50%; image-rendering: pixelated; }
+</style>

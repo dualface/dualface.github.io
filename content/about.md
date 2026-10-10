@@ -7,6 +7,8 @@ ShowToc = false
 ShowPostNavLinks = false
 +++
 
+{{< logo >}}
+
 I'm dualface. I have been building software for more than 20 years.
 
 Early on, I wrote FleaPHP and QeePHP, among the first open-source PHP frameworks in China. Later I created quick-cocos2d-x, a game engine. When it was acquired, about a third of mobile game teams in China were using it.
