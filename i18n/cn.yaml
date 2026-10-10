@@ -13,7 +13,7 @@
     other: "{{ .Count }} 分钟"
 
 - id: words
-  translation: 
+  translation:
     one: "字"
     other: "{{ .Count }} 字"
 
