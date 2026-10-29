@@ -11,15 +11,19 @@ ShowPostNavLinks = false
 
 ### [Kander](https://github.com/dualface/kander)
 
-协调多个 AI 编程 agent 的看板。每个任务在自己的 git worktree 中运行，合并前由另外的审核 agent 检查。我每天都用它开发自己的项目。
+强规则驱动的多 Agent 并行开发，内置独立审查与交付门禁，充分保障自动化交付质量。从 2026 年 8 月到 10 月，已经为我完成了 2800 多个任务。
 
 ### [QuickTUI](https://quicktui.ai)
 
-用手机控制电脑上的编程 agent。支持 Claude Code、Codex、OpenCode 等，运行在 tmux 或 Herdr 中。有 iOS 和 Android 应用；服务端支持 macOS、Linux 和 Windows。
+用手机控制电脑上的编程 agent。流畅的终端与聊天模式，随时监控和接管远程电脑上的 Agent。支持 Claude Code、Codex、DeepSeek Harness 等超过 10 种 Agent，提供端到端加密的中转连接。
+
+### [STE-zh](https://github.com/dualface/ste-zh)
+
+借鉴航空与工业界严谨的 ASD-STE100（Simplified Technical English，简化技术英语）原则，约束 Agent 用清晰、严密且无歧义的中文汇报工作结果。
 
 ### 一款独立游戏
 
-正在开发，由我的 agent 团队一起做。之后会在这里写更多。
+正在借助 AI Agent 开发一款独立游戏，希望能够早日与大家见面。
 
 ## 早年
 

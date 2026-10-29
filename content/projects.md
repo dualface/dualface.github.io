@@ -11,15 +11,19 @@ ShowPostNavLinks = false
 
 ### [Kander](https://github.com/dualface/kander)
 
-A kanban board for coordinating several AI coding agents. Each task runs in its own git worktree, and separate reviewer agents check the work before it is merged. I use it every day to build my own projects.
+Parallel development with multiple agents, driven by strict rules. Independent review and delivery gates are built in to protect the quality of automated delivery. From August to October 2026, it completed more than 2,800 tasks for me.
 
 ### [QuickTUI](https://quicktui.ai)
 
-Control the coding agents on your computer from your phone. It works with Claude Code, Codex, OpenCode and others, running in tmux or Herdr. Apps for iOS and Android; the server runs on macOS, Linux and Windows.
+Control the coding agents on your computer from your phone. Smooth terminal and chat modes let you monitor and take over the agents on a remote computer at any time. It supports more than 10 agents, including Claude Code, Codex and DeepSeek Harness, and connects through an end-to-end encrypted relay.
+
+### [STE-zh](https://github.com/dualface/ste-zh) (in Chinese)
+
+An agent skill based on ASD-STE100 (Simplified Technical English), a strict writing standard used in aerospace and other industries. It makes agents report their work results in clear, precise and unambiguous Chinese.
 
 ### An indie game
 
-In progress, built with my team of agents. More here soon.
+I'm building an indie game with the help of AI agents. I hope to share it with you soon.
 
 ## Earlier
 
