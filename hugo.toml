@@ -48,14 +48,14 @@ weight = 1
 title = "dualface"
 
 [languages.en.params]
-description = "20+ yrs in open source. Now building http://quicktui.ai & an indie game with an army of AI agents · Kander, QuickTUI & more OSS @ http://github.com/dualface"
+description = "20+ years in open source. Now building QuickTUI (quicktui.ai) and an indie game with a team of AI agents. Kander, QuickTUI and more on GitHub."
 
 [languages.en.params.footer]
 text = "[Get new posts by email](https://buttondown.com/dualface)"
 
 [languages.en.params.homeInfoParams]
 Title = "Hi, I'm dualface"
-Content = "I've been deeply involved in open source for more than 20 years. Here I share my experience and lessons from working with a team of AI agents, building developer tools, and making an indie game."
+Content = "I've been deeply involved in open source for more than 20 years. Here I share my experience and lessons from working with a team of AI agents, building developer tools, and making an indie game. Currently building [QuickTUI](https://quicktui.ai) and an indie game."
 
 [[languages.en.params.socialIcons]]
 name = "x"
@@ -97,14 +97,14 @@ title = "dualface"
 [languages.cn.params]
 # Numeric dates: the localized long date format falls back to English month names for "cn"
 DateFormat = "2006-01-02"
-description = "20+ yrs in open source. Now building http://quicktui.ai & an indie game with an army of AI agents · Kander, QuickTUI & more OSS @ http://github.com/dualface"
+description = "深度参与开源 20 多年。现在带着一组 AI agent 开发 QuickTUI 和一款独立游戏。Kander、QuickTUI 等开源项目见 GitHub。"
 
 [languages.cn.params.footer]
 text = "微信公众号：[扫码关注](/images/wechat-qr.png)"
 
 [languages.cn.params.homeInfoParams]
 Title = "你好，我是 dualface"
-Content = "我深度参与开源已经 20 多年了，我会在这里分享关于带着一组 AI agent 协作开发、做开发者工具、做独立游戏的经验与体会。"
+Content = "我深度参与开源已经 20 多年了，我会在这里分享关于带着一组 AI agent 协作开发、做开发者工具、做独立游戏的经验与体会。现在正在开发 [QuickTUI](https://quicktui.ai) 和一款独立游戏。"
 
 [[languages.cn.params.socialIcons]]
 name = "x"
