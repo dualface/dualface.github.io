@@ -48,14 +48,14 @@ weight = 1
 title = "dualface"
 
 [languages.en.params]
-description = "Step-by-step notes from 20+ years of building software: working with a team of AI agents, building developer tools, and making an indie game."
+description = "20+ yrs in open source. Now building http://quicktui.ai & an indie game with an army of AI agents · Kander, QuickTUI & more OSS @ http://github.com/dualface"
 
 [languages.en.params.footer]
 text = "[Get new posts by email](https://buttondown.com/dualface)"
 
 [languages.en.params.homeInfoParams]
 Title = "Hi, I'm dualface"
-Content = "I have been building software for more than 20 years. Here I share step-by-step notes on working with a team of AI agents, building developer tools, and making an indie game."
+Content = "I've been deeply involved in open source for more than 20 years. Here I share my experience and lessons from working with a team of AI agents, building developer tools, and making an indie game."
 
 [[languages.en.params.socialIcons]]
 name = "x"
@@ -97,14 +97,14 @@ title = "dualface"
 [languages.cn.params]
 # Numeric dates: the localized long date format falls back to English month names for "cn"
 DateFormat = "2006-01-02"
-description = "20 多年软件开发的分步笔记：带着一组 AI agent 协作开发、做开发者工具、做独立游戏。"
+description = "20+ yrs in open source. Now building http://quicktui.ai & an indie game with an army of AI agents · Kander, QuickTUI & more OSS @ http://github.com/dualface"
 
 [languages.cn.params.footer]
 text = "微信公众号：[扫码关注](/images/wechat-qr.png)"
 
 [languages.cn.params.homeInfoParams]
 Title = "你好，我是 dualface"
-Content = "我写软件已经 20 多年了。这里分享分步笔记：带着一组 AI agent 协作开发、做开发者工具、做独立游戏。"
+Content = "我深度参与开源已经 20 多年了，我会在这里分享关于带着一组 AI agent 协作开发、做开发者工具、做独立游戏的经验与体会。"
 
 [[languages.cn.params.socialIcons]]
 name = "x"
