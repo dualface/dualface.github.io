@@ -39,13 +39,13 @@ A send-back means one review round found an issue that must be fixed. The higher
 
 **Review: how each review model performs**
 
-| Review model        | Reviews | Reviews with must-fix issues | Must-fix issues per review | Must-fix issues rejected |
-| ------------------- | ------: | ---------------------------: | -------------------------: | -----------------------: |
-| **gpt-6.1-sol**     | **422** |                **223 (53%)** |                   **1.09** |                 **4.8%** |
-| gpt-6-astra         |     231 |                    127 (55%) |                       1.69 |                     2.0% |
-| grok-4.7-build-fast |     422 |                    189 (45%) |                       0.70 |                     5.1% |
-| grok-4.7            |     345 |                    159 (46%) |                       0.74 |                     2.3% |
-| swe-2-max           |     112 |                     23 (21%) |                       0.31 |                     3.8% |
+| Review model        | Reviews | Reviews with must-fix | Must-fix per review | Must-fix rejected |
+| ------------------- | ------: | --------------------: | ------------------: | ----------------: |
+| **gpt-6.1-sol**     | **422** |         **223 (53%)** |            **1.09** |          **4.8%** |
+| gpt-6-astra         |     231 |             127 (55%) |                1.69 |              2.0% |
+| grok-4.7-build-fast |     422 |             189 (45%) |                0.70 |              5.1% |
+| grok-4.7            |     345 |             159 (46%) |                0.74 |              2.3% |
+| swe-2-max           |     112 |              23 (21%) |                0.31 |              3.8% |
 
 > The table shows that gpt-6-astra is the most likely to find must-fix issues, and has the lowest share of must-fix issues rejected.
 >
@@ -54,6 +54,8 @@ A send-back means one review round found an issue that must be fixed. The higher
 > At OpenAI's official API pricing, gpt-6-astra's unit price is five times that of gpt-6.1-sol.
 > In third-party benchmarks, the same task actually costs about 4.5 times as much.
 > That is still a clear gap in value.
+>
+> More than 1,900 of the tasks in this data come from https://quicktui.ai/, a commercial product.
 
 ~
 
@@ -98,11 +100,9 @@ Breaking down a task has rules too. The basic principles:
 
 Here is a real task:
 
-```
-QuickTUI is a tool for controlling the agents on your computer from your phone. The app has a quick toolbar with two tools, Quick Answer and D-Pad. Quick Answer shows five buttons for the numbers 1 to 5; picking one sends that number plus Enter to the agent. D-Pad is a 3x3 grid panel with four arrow keys and two or three commonly used keys.
-
-The two features were added at different times, and each has its own implementation. To unify the look and the interaction, refactor them into a base floating panel component, then derive the two components from it.
-```
+> QuickTUI is a tool for controlling the agents on your computer from your phone. The app has a quick toolbar with two tools, Quick Answer and D-Pad. Quick Answer shows five buttons for the numbers 1 to 5; picking one sends that number plus Enter to the agent. D-Pad is a 3x3 grid panel with four arrow keys and two or three commonly used keys.
+>
+> The two features were added at different times, and each has its own implementation. To unify the look and the interaction, refactor them into a base floating panel component, then derive the two components from it.
 
 This task really has three goals:
 
