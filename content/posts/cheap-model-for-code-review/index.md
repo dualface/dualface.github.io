@@ -6,19 +6,23 @@ date: '2026-10-29'
 draft: false
 ---
 
-The usual thinking goes like this: use a top-tier model to break down tasks, a model one tier down to execute them, and a top-tier model for review. Review, the thinking goes, has to be top-tier.
+The usual thinking goes like this: use a top-tier model to break down tasks, and a model one tier down can execute them. Review, though, has to be top-tier.
 
-Here is the combination I use most right now:
+But here is the combination I use most right now:
 
 - Task breakdown: opus-5.5-high
 - Execution: opus-5.5-medium
 - Review: gpt-6.1-sol-high
 
-Most people's first reaction: "You're letting gpt-6.1-sol, a high schooler, grade the homework of opus-5.5, a grad student? Give me a break."
+Most people's first reaction: "You're letting gpt-6.1-sol, a high schooler, grade the homework of opus-5.5, a grad student?
 
-But my data from more than 2,000 tasks points the other way. With the right hard gates, skills, and prompts, this combination gives better value. A top-tier model breaks down the task, a top-tier model executes it, and a model one tier down reviews it.
+"Give me a break."
 
-I'm not claiming top-tier models are bad at review. My point here is **cost-effectiveness**. That assumes the task success rate and the quality of the work hold up. If they don't, the savings mean nothing.
+But my data from more than 2,000 tasks says otherwise. With the right hard gates, skills, and prompts, here is what works:
+
+A top-tier model breaks down and executes the task, and a model one tier down reviews it. That keeps the task success rate and quality where they need to be, and it gives clearly better value.
+
+That is the core point of this post.
 
 > Data source: [Kander, a task orchestration tool](https://github.com/dualface/kander)
 >
@@ -47,26 +51,24 @@ A send-back means one review round found an issue that must be fixed. The higher
 | grok-4.7            |     345 |             159 (46%) |                0.74 |              2.3% |
 | swe-2-max           |     112 |              23 (21%) |                0.31 |              3.8% |
 
-> The table shows that gpt-6-astra is the most likely to find must-fix issues, and has the lowest share of must-fix issues rejected.
+> The table shows that gpt-6-astra is the most likely to find must-fix issues. gpt-6.1-sol comes right behind it, only two percentage points lower.
 >
-> One catch: when gpt-6-astra did reviews, it ran under different rules from the ones I later used with gpt-6.1-sol. Treat the comparison as rough.
+> At OpenAI's official API pricing, gpt-6-astra's unit price is five times that of gpt-6.1-sol. In third-party benchmarks, the same task actually costs about 4.5 times as much.
 >
-> At OpenAI's official API pricing, gpt-6-astra's unit price is five times that of gpt-6.1-sol.
-> In third-party benchmarks, the same task actually costs about 4.5 times as much.
-> That is still a clear gap in value.
+> So once you factor in cost, gpt-6.1-sol has a very clear advantage.
 >
-> More than 1,900 of the tasks in this data come from https://quicktui.ai/, a commercial product.
+> More than 1,900 of the tasks in this data come from [QuickTUI](https://quicktui.ai/), a commercial product.
 
 ~
 
 ## Why tasks go wrong
 
-Leave review out of the picture for a moment. Without it, tasks mostly go off track in two places:
+Without a review stage, tasks mostly go off track in two places:
 
 - Planning
 - Execution
 
-A task can already go off track at the first step, when the model turns the requirement into an execution plan. The two most common causes:
+Often, a task may go off track as early as the first step, when the requirement is turned into an execution plan. The two most common causes:
 
 - The requirement leaves details unclear
 - The requirement is too complex
@@ -75,15 +77,15 @@ A task can already go off track at the first step, when the model turns the requ
 
 ## How to get a clear goal
 
-Unclear details are easy to explain. When we describe a requirement, we usually describe it in the abstract. Nobody can think of every detail. If the plan doesn't settle those gray areas, the model may fall back on its training data during execution. The result may then not match what you expected.
+The first cause, unclear details, is easy to understand. When we state a requirement, we usually describe it in the abstract. Nobody can think of every detail. If the plan doesn't settle those gray areas, the model is likely to drift during execution, and the result won't match what you expected.
 
-So when you discuss a requirement, use a top-tier model with the right prompt. Have the model ask the questions it would need answered to actually carry out the plan, and have it confirm each answer with you. The superpowers skill, which was very popular a while back, exists to solve this problem. It makes the model keep asking until it has no open questions about the requirement.
+So when you discuss a requirement, use a top-tier model with the right prompt. Have the model raise the questions that come up when you actually try to carry out the plan, and have it confirm each answer with you. The superpowers skill, which was very popular a while back, exists to solve this problem. It makes the model keep asking the user questions until the requirement is completely clear.
 
-Models have improved since then. Much of what those skills did is now built into the models or the software that runs the agents, and we can make full use of that.
+Models have improved since then. Much of what those skills did is now built into the models or the software that runs the agents, and we should make the most of it.
 
-For example, when I discuss a requirement in Codex, I always turn on plan mode. In this mode, gpt-6-astra asks more questions, and often those questions push me to think things through.
+For example, when I discuss a requirement in Codex, I always turn on plan mode. In this mode, the model asks a series of questions that help me and the model work out the requirement together.
 
-With fable-5.1 or opus-5.5, I usually add one line to the prompt: "Work out the task goal with me, and pin down its details and acceptance criteria."
+With fable-5.1 or opus-5.5, I also add one line to the prompt: "Work out the task goal with me, and pin down its details and acceptance criteria."
 
 After a few rounds of back-and-forth, the model and I usually both have a clear picture of the goal and how to reach it. That's when you can start creating the plan.
 
@@ -91,37 +93,40 @@ After a few rounds of back-and-forth, the model and I usually both have a clear 
 
 ## Break down complex tasks
 
-Sometimes a requirement is too complex. If you do it as one task, the session context grows large and may trigger auto-compaction several times along the way. Compacting context always loses information, and that hurts the quality of the work. An overly complex task is also harder to review. The best option is still to break the complex task into a series of simpler tasks.
+Sometimes a requirement is too complex. If you do it as one task, the session context grows large and may trigger auto-compaction several times along the way. Context compaction always loses information, and that hurts the quality of the work. An overly complex task is also harder to review, and usually takes more review rounds.
 
-Breaking down a task has rules too. The basic principles:
+So the best option is to break the complex task into a series of simpler tasks.
+
+The basic principles of breaking down a task:
 
 - Each task has a single goal.
 - A "goal" is a result the user can verify and accept on its own.
 
 Here is a real task:
 
-> QuickTUI is a tool for controlling the agents on your computer from your phone. The app has a quick toolbar with two tools, Quick Answer and D-Pad. Quick Answer shows five buttons for the numbers 1 to 5; picking one sends that number plus Enter to the agent. D-Pad is a 3x3 grid panel with four arrow keys and two or three commonly used keys.
+> QuickTUI is a tool for controlling the agents on your computer from your phone. The app has a quick toolbar.
+>
+> The toolbar has two tools, Quick Answer and D-Pad. Quick Answer shows five buttons for the numbers 1 to 5; picking one sends that number plus Enter to the agent. D-Pad is a 3x3 grid panel with four arrow keys and two or three commonly used keys.
 >
 > The two features were added at different times, and each has its own implementation. To unify the look and the interaction, refactor them into a base floating panel component, then derive the two components from it.
 
 This task really has three goals:
 
-- A shared floating panel component. Even with no content, it can be verified and accepted on its own: it can be dragged, it can be locked, and so on.
+- A shared floating panel component that provides features such as dragging and locking.
 - A Quick Answer component built on the floating panel component.
 - A D-Pad component built on the floating panel component.
 
-In the end, the task was split into three subtasks, which formed a task group.
+In the end, the task was split into three subtasks, which made up a task group.
 
-This is the same way people solve problems: split a complex task into simpler tasks that are easier to finish.
+This is the same way people solve problems: **split a complex task into simpler tasks that are easier to finish.**
 
-Whatever model you use, this step is what task success and quality rest on. This is where a top-tier model is worth the most.
+Whatever model you use, the task success rate and quality depend on this step. This is where a top-tier model is worth the most.
 
 ~
 
 ## Create a plan you can verify
 
-Plenty of skills can help you create an execution plan. superpowers, for example, uses a spec file plus a plan file.
-Today, though, the superpowers setup is a bit too heavy. Consider a simpler task file template that the agent fills in.
+Plenty of skills can help you create an execution plan. Whatever form the plan takes, you should be able to verify it. Here is a simplified task file template:
 
 ```
 ## Goal
@@ -140,11 +145,9 @@ What the task should achieve:
 [ ] Acceptance item 1
 [ ] Acceptance item 2
 [ ] Acceptance item 3
-
-## Task execution
 ```
 
-The template is simple. The most important part is the "Acceptance criteria" section.
+What makes the whole plan verifiable is the "Acceptance criteria" section.
 
 Each item there should check exactly one thing that can be verified. Once every item in the list passes, the task has a baseline of quality.
 
@@ -163,9 +166,21 @@ Here is the acceptance checklist for one of the tasks from the real requirement 
 
 I've quoted only a few items. The first is a mechanical check; in principle, a script could check it. The rest need someone to read the code, but the code involved is tiny and has no complex logic.
 
-That looks like a lot of items, but **each item has a very clear acceptance standard**. It either passes or it doesn't.
+The full list looks long, but **each item has a very clear acceptance standard**. It either passes or it doesn't, with no gray area.
 
-A simple, clear checklist like this is exactly why I chose gpt-6.1-sol for review. In practice, the success rate and quality have been entirely acceptable.
+A simple, clear checklist like this is exactly what lets me pick gpt-6.1-sol, one tier below opus-5.5, for review. In practice, the success rate and quality have been entirely acceptable.
+
+~
+
+## Improve the quality of the plan
+
+At this point the task plan is written. But models always hallucinate, and a plan a model writes may well have problems. So ask the model to self-review the plan it just wrote.
+
+Self-review needs the right prompt. Here is a simple example: "Based on the task goal we agreed on, check that the plan matches the goal. Make sure the plan has no errors or gaps, and no unrelated goals. Fix any problems you find."
+
+Self-review of a complex task's plan usually turns up some problems. Hand the plan to another agent for review, and it may dig up more.
+
+In practice, even a single round of self-review is clearly worth it.
 
 ~
 
@@ -178,36 +193,38 @@ In practice, though, the biggest problems with a lower-tier model are drift and 
 - The goal was A, and the result came out a little short of A or a little past it (A- or A+)
 - The goal had A1, A2, and A3, and only A1 and A3 got done
 
-Review catches these problems later and asks the executing agent to redo the work. But across a large number of tasks, I've seen this significantly increase the number of loops and the time each task takes.
+Review catches these problems later and asks the executing agent to redo the work. But across a large number of tasks, I've seen this significantly increase the number of review rounds and the time each task takes.
 
-The data at the top of this post shows the same thing. Task cards executed by models such as deepseek and swe-2 average more than 1.00 send-backs, well above opus-5.5's 0.78. For gpt-5.6-sol, the average is 0.84, not far from opus-5.5. But 72% of its cards were sent back at least once, against only 61% for opus-5.5.
+The data at the top of this post shows the same thing:
 
-Going by the data, the better choice is a top-tier model for execution, to lower the chance of drift and omissions.
+Cards executed by models two tiers down, such as deepseek and swe-2, average more than 1.00 send-backs, well above opus-5.5's 0.78. Cards executed by gpt-5.6-sol, one tier down, average 0.84. That closes much of the gap, but 72% of them were still sent back at least once. The best performer was opus-5.5: only 0.78 send-backs per card, and only 61% of its cards sent back at all.
+
+Each review round isn't just a model checking the work. It also runs unit tests, end-to-end automated tests, and so on, so one round takes at least a few minutes. Run a few extra rounds, and a single task takes much longer.
+
+So going by the data, the better choice is a top-tier model for execution. It lowers the chance of drift and omissions and cuts the number of execute-and-review rounds.
 
 ~
 
 ## How to review
 
-I said to use a top-tier model for execution. Even the best current models still drift and miss things, so you can't skip the review stage.
+I said to use a top-tier model for execution. But even the best current models still drift and miss things, so you can't skip the review stage.
 
 So how do you review?
 
-One approach I **don't recommend** is asking the agent to review the task in the session that executed it. Review inside the execution session only works for mechanical checks. For details, see this doc: [Give Claude a check to run](https://code.claude.com/docs/en/best-practices#give-claude-a-check-to-run).
+One approach is to ask the agent to review the task in the session that executed it. That only works for mechanical checks, not for review that needs judgment. For details, see this doc: [Give Claude a check to run](https://code.claude.com/docs/en/best-practices#give-claude-a-check-to-run).
 
 Any review that needs judgment must run in a new session. Whether that session is a separate agent or a subagent doesn't matter.
 
-In the new session, give it **only** the goal and acceptance parts of the task document. Then tell it which code to review (usually a git commit). **Never** send the new session anything about how the task was executed. That still pollutes its context.
+**In the new session, give it only the goal and acceptance parts of the task document.** Then tell it which code to review (usually a git commit). **Never send the new session anything about how the task was executed. Otherwise its context gets polluted all the same.**
 
-Back to the real acceptance checklist from earlier: clear acceptance criteria are the precondition for using a lower-tier model for review.
-
-Without an acceptance checklist, having gpt-6.1-sol review opus-5.5's work can go like this:
+Back to the key point from earlier: clear acceptance criteria are the precondition for using a lower-tier model for review. Without an acceptance checklist, having gpt-6.1-sol review opus-5.5's work can go like this:
 
 - It disagrees with opus-5.5's output, even when the output was correct
 - It misses parts of the task that execution skipped, and details that drifted
 
-**A lower-tier model can review a top-tier model's output. It needs hard criteria to do it.**
+A lower-tier model can review a top-tier model's output. It needs hard criteria to do it.
 
-A top-tier reviewer has a problem beyond cost: it is more likely to chase edge cases. gpt-6-astra does this a lot. So as long as hard constraints keep the delivered quality acceptable, a lower-tier reviewer gives you a clear cost advantage and also speeds up delivery.
+A top-tier reviewer also has a problem beyond cost: it is more likely to chase edge cases. (Looking at you, gpt-6-astra.) So as long as hard constraints keep the delivered quality acceptable, a lower-tier reviewer gives you a clear cost advantage and also speeds up delivery.
 
 ~
 
@@ -224,21 +241,19 @@ One step here is key: **confirm that each reported issue really exists and shoul
 
 A lower-tier model in the execution stage may just accept everything without thinking, or make the wrong call. A top-tier model is less likely to get this step wrong.
 
-In the real data that Kander has collected, **6.2% of review comments were rejected and 15.5% were deferred (every deferred item was a non-blocking suggestion)**. The executing model must be able to decide what must be fixed and what can be left alone. This is another reason I think execution should use a top-tier model.
+In the real data that Kander has collected, 6.2% of review comments were rejected and 15.5% were deferred (every deferred item was a non-blocking suggestion). The executing model must be able to decide what must be fixed and what can be left alone. This is one more reason I think execution should use a top-tier model.
 
 Skip this step, and you get this pattern:
 
-- Review finds an issue that doesn't need handling, or doesn't exist at all
-- The executing agent starts fixing it right away
-- After the fix, the next review finds another issue, and the fixing starts again
+- The reviewer agent finds an issue that doesn't need handling, or doesn't exist at all.
+- The executing agent starts fixing it right away.
+- After the fix, the next review finds another issue, and the fixing starts again.
 
 This problem is especially visible with gpt-6-astra as the reviewer. The data shows gpt-6-astra reports 1.69 must-fix issues per review, against 1.09 for gpt-6.1-sol. The main reason is that gpt-6-astra finds more extreme edge cases.
 
-Keep in mind that even with opus-5.5, 61% of task cards were sent back at least once. So you can't skip review.
+Keep in mind that even with opus-5.5, 61% of task cards were sent back at least once. So, once again: you can't skip review.
 
 ~
-
-That brings us back to the title of this section: the review loop.
 
 From breakdown to final delivery, a task goes through this process:
 
@@ -249,7 +264,7 @@ Break down --> Execute --> Review --> Deliver
                  +- Issues --+
 ```
 
-I call this back-and-forth between execution and review the review loop.
+I call this back-and-forth between execution and review the **review loop**.
 
 A task that gets through the review loop has, at minimum, passed every acceptance criterion listed in its task document. That gives it a baseline of quality.
 
@@ -264,7 +279,13 @@ A complete orchestration system has many parts:
 - A task report template
 - Scripts that control the task execution flow
 
-One post can't cover all of it. If you're interested, take a look at [Kander, a task orchestration tool](https://github.com/dualface/kander).
+One short post can't cover all of it. If you're interested, take a look at [Kander, a task orchestration tool](https://github.com/dualface/kander).
+
+It already includes enough skills, prompts, and tools to cover these parts, and it enforces strict gates to keep task quality as high as it can.
+
+I'll also write a detailed post on how to use Kander later.
+
+~
 
 Back to the claim at the start of this post: with the right tools, a lower-tier model is the more cost-effective choice for review.
 
