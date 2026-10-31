@@ -1,4 +1,4 @@
-{{- /* Override of PaperMod translation_list.html: shows the current language, then links to the others, named in the page's language. */ -}}
+{{- /* Override of PaperMod translation_list.html: lists every language in site order; the current one is text, the others are links. */ -}}
 {{- if .IsTranslated -}}
     {{- if (ne .Layout "search") }}
         {{- if or (.Param "author") (.Param "ShowReadingTime") (not .Date.IsZero) }}
@@ -7,13 +7,22 @@
     {{- end -}}
     <span>{{- i18n "translations" | default "Translations" }}:</span>
     <ul class="i18n_list">
-        <li class="lang-current" aria-current="true">{{ i18n (printf "lang_%s" .Lang) }}</li>
-        {{- range .Translations }}
+        {{- $lang := .Lang }}
+        {{- $targets := .Translations }}
+        {{- range site.Languages }}
+        {{- $name := i18n (printf "lang_%s" .Lang) }}
+        {{- if eq $lang .Lang }}
+        <li class="lang-current" aria-current="true" title="{{ $name }}">{{ upper .Lang }}</li>
+        {{- else }}
+        {{- $code := upper .Lang }}
+        {{- range first 1 (where $targets "Lang" .Lang) }}
         <li>
-            <a href="{{ .Permalink }}" hreflang="{{ .Language.Locale }}">
-                {{- i18n (printf "lang_%s" .Lang) -}}
+            <a href="{{ .Permalink }}" title="{{ $name }}" hreflang="{{ .Language.Locale }}">
+                {{- $code -}}
             </a>
         </li>
+        {{- end }}
+        {{- end }}
         {{- end }}
     </ul>
 {{- end -}}
