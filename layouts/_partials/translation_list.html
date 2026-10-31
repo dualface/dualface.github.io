@@ -1,4 +1,4 @@
-{{- /* Override of PaperMod translation_list.html: uses .Language.Label (LanguageName is deprecated since Hugo 0.158). */ -}}
+{{- /* Override of PaperMod translation_list.html: shows the current language, then links to the others, named in the page's language. */ -}}
 {{- if .IsTranslated -}}
     {{- if (ne .Layout "search") }}
         {{- if or (.Param "author") (.Param "ShowReadingTime") (not .Date.IsZero) }}
@@ -7,14 +7,11 @@
     {{- end -}}
     <span>{{- i18n "translations" | default "Translations" }}:</span>
     <ul class="i18n_list">
+        <li class="lang-current" aria-current="true">{{ i18n (printf "lang_%s" .Lang) }}</li>
         {{- range .Translations }}
         <li>
-            <a href="{{ .Permalink }}">
-                {{- if (and site.Params.displayFullLangName (.Language.Label)) }}
-                {{- .Language.Label | emojify -}}
-                {{- else }}
-                {{- .Lang | title -}}
-                {{- end -}}
+            <a href="{{ .Permalink }}" hreflang="{{ .Language.Locale }}">
+                {{- i18n (printf "lang_%s" .Lang) -}}
             </a>
         </li>
         {{- end }}

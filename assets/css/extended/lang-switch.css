@@ -1,0 +1,24 @@
+/* The current language is plain text; the other language is a link. */
+.lang-menu li + li::before,
+.post-meta .i18n_list li + li::before {
+    content: "/";
+    color: var(--secondary);
+}
+
+.post-meta .i18n_list li + li::before {
+    margin-right: 6px;
+}
+
+.lang-menu .lang-current {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0 0.4rem;
+    white-space: nowrap;
+}
+
+.lang-menu a {
+    color: var(--secondary);
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+    white-space: nowrap;
+}

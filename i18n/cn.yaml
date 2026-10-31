@@ -23,6 +23,12 @@
 - id: translations
   translation: "语言"
 
+- id: lang_en
+  translation: "English"
+
+- id: lang_cn
+  translation: "简体中文"
+
 - id: home
   translation: "主页"
 

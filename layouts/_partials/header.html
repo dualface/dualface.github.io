@@ -68,17 +68,15 @@
                     {{- $separator := or $label_text (not site.Params.disableThemeToggle)}}
                     {{- if $separator }}<span class="nav-sep">|</span>{{ end }}
                     <ul class="lang-menu">
+                        <li class="lang-current" aria-current="true">{{ i18n (printf "lang_%s" $lang) }}</li>
                         {{- range . -}}
                         {{- if ne $lang .Lang }}
+                        {{- $name := i18n (printf "lang_%s" .Lang) }}
                         <li>
-                            <a href="{{- .Permalink -}}" title="{{ .Language.Params.languageAltTitle | default (.Language.Label | emojify) | default (.Lang | title) }}"
+                            <a href="{{- .Permalink -}}" title="{{ $name }}"
                                 hreflang="{{ .Language.Locale }}"
-                                aria-label="{{ .Language.Label | default (.Lang | title) }}">
-                                {{- if (and site.Params.displayFullLangName (.Language.Label)) }}
-                                {{- .Language.Label | emojify -}}
-                                {{- else }}
-                                {{- .Lang | title -}}
-                                {{- end -}}
+                                aria-label="{{ $name }}">
+                                {{- $name -}}
                             </a>
                         </li>
                         {{- end -}}

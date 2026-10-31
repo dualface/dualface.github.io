@@ -1,0 +1,10 @@
+# English UI strings that differ from themes/PaperMod/i18n/en.yaml. Other strings still come from the theme.
+
+- id: translations
+  translation: "Language"
+
+- id: lang_en
+  translation: "English"
+
+- id: lang_cn
+  translation: "Simplified Chinese"
