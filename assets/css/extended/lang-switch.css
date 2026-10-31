@@ -9,14 +9,22 @@
     margin-right: 6px;
 }
 
+.lang-menu {
+    padding: 0 0.4rem;
+}
+
+.lang-menu li + li::before {
+    margin: 0 0.4rem;
+}
+
 .lang-menu .lang-current {
     font-size: 1rem;
     font-weight: 500;
-    padding: 0 0.4rem;
     white-space: nowrap;
 }
 
-.lang-menu a {
+.lang-menu li a {
+    padding: 0;
     color: var(--secondary);
     text-decoration: underline;
     text-underline-offset: 0.3rem;
