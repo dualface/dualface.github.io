@@ -1,0 +1,5 @@
+/* The intro sits below the post list, so it drops the hero height and margins. */
+.first-entry.home-info {
+    min-height: 0;
+    margin: calc(var(--gap) * 2) 0 var(--gap) 0;
+}
