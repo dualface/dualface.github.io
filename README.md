@@ -9,4 +9,4 @@
   - Images in the bundle are shared by both languages.
 - `content/posts/` is written by the dualface-writing publish script; do not edit posts here.
 - Other pages follow the same rule: `about.md` / `about.cn.md`, `projects.md` / `projects.cn.md`.
-- The newsletter box after a post is English only (Buttondown); the Chinese page shows the WeChat QR code `static/images/wechat-qr.png`.
+- The newsletter box after a post, and on the English About page (`newsletter = true`), is English only (Buttondown); Chinese posts show the WeChat QR code `static/images/wechat-qr.png`.

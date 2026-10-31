@@ -113,11 +113,6 @@
 </footer>
 {{- end }}
 
-{{- /* The home intro sits below the post list, on the first page only. */}}
-{{- if and .IsHome site.Params.homeInfoParams (eq $paginator.PageNumber 1) }}
-{{- partial "home_info.html" . }}
-{{- end }}
-
 {{- end }}{{/* end profileMode */}}
 
 {{- end }}{{- /* end main */ -}}

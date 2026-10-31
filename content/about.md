@@ -5,6 +5,7 @@ hiddenInRss = true
 ShowReadingTime = false
 ShowToc = false
 ShowPostNavLinks = false
+newsletter = true
 +++
 
 {{< logo >}}
@@ -38,5 +39,4 @@ I write the original posts in Chinese, my native language. The English versions 
 
 - X: [@dualface](https://x.com/dualface)
 - GitHub: [dualface](https://github.com/dualface)
-- Newsletter: one email per new post, no fixed schedule. [Subscribe](https://buttondown.com/dualface)
 - RSS: [dualface.dev/index.xml](/index.xml)

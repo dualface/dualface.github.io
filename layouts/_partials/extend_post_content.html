@@ -1,12 +1,12 @@
 {{- /*
   文章正文之后的订阅框。PaperMod 在每篇文章正文后调用 extend_post_content.html。
-  只在 posts 下的文章显示，About 等页面不显示。
+  在 posts 下的文章和 front matter 设置了 newsletter = true 的页面显示。
   英文页显示 Buttondown 邮件订阅（邮件只发英文）；中文页显示微信公众号二维码。
 
   把下面 <form> 换成 Buttondown 后台提供的嵌入代码，
   或者只把 dualface 换成你的 Buttondown 用户名。
 */ -}}
-{{- if eq .Section "posts" }}
+{{- if or (eq .Section "posts") .Params.newsletter }}
 {{- if eq .Language.Lang "cn" }}
 <aside class="newsletter-box" aria-label="微信公众号">
   <p class="newsletter-title">关注微信公众号</p>
