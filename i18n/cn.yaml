@@ -29,6 +29,18 @@
 - id: lang_cn
   translation: "简体中文"
 
+- id: home_recent_posts
+  translation: "最近文章"
+
+- id: home_all_posts
+  translation: "全部文章"
+
+- id: home_projects
+  translation: "项目"
+
+- id: home_all_projects
+  translation: "全部项目"
+
 - id: home
   translation: "主页"
 

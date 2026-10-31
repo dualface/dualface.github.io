@@ -1,0 +1,37 @@
+{{- define "main" }}
+
+{{- /* Recent posts and current projects. The projects come from the first "##" section of the Projects page. */ -}}
+{{- $posts := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- $posts = where $posts "Params.hiddenInHomeList" "!=" "true" }}
+
+<h2 class="home-section-title">{{ i18n "home_recent_posts" }}</h2>
+{{- range first 3 $posts }}
+<article class="post-entry">
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">{{ .Title }}</h2>
+  </header>
+  <div class="entry-content">
+    <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}{{ end }}</p>
+  </div>
+  <footer class="entry-footer">
+    {{- partial "post_meta.html" . -}}
+  </footer>
+  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+</article>
+{{- end }}
+{{- with site.GetPage "/posts" }}
+<p class="home-more"><a href="{{ .Permalink }}">{{ i18n "home_all_posts" }}&nbsp;»</a></p>
+{{- end }}
+
+{{- with site.GetPage "/projects" }}
+{{- $sections := split .Content "<h2" }}
+{{- if gt (len $sections) 1 }}
+<h2 class="home-section-title">{{ i18n "home_projects" }}</h2>
+<div class="home-projects post-content md-content">
+  {{ index $sections 1 | replaceRE `(?s)^.*?</h2>` "" | safeHTML }}
+</div>
+<p class="home-more"><a href="{{ .Permalink }}">{{ i18n "home_all_projects" }}&nbsp;»</a></p>
+{{- end }}
+{{- end }}
+
+{{- end }}{{- /* end main */ -}}

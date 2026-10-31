@@ -1,0 +1,33 @@
+.home-section-title {
+    margin: calc(var(--gap) * 1.5) 0 var(--gap);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--secondary);
+}
+
+.home-section-title:first-child {
+    margin-top: 0;
+}
+
+.home-more {
+    margin-bottom: calc(var(--gap) * 2);
+    font-size: 14px;
+    color: var(--secondary);
+}
+
+.home-more a {
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+}
+
+.home-projects {
+    margin: 0 0 var(--gap);
+    padding: var(--gap);
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.home-projects h3:first-child {
+    margin-top: 0;
+}

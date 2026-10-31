@@ -8,3 +8,15 @@
 
 - id: lang_cn
   translation: "Simplified Chinese"
+
+- id: home_recent_posts
+  translation: "Recent posts"
+
+- id: home_all_posts
+  translation: "All posts"
+
+- id: home_projects
+  translation: "Projects"
+
+- id: home_all_projects
+  translation: "All projects"
