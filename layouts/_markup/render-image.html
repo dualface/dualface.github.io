@@ -1,9 +1,15 @@
-{{- /* Absolute image URLs, so images also work in RSS readers and newsletter emails. */ -}}
+{{- /*
+  Absolute image URLs, so images also work in RSS readers and newsletter emails.
+  PNG files in a post bundle are converted to WebP at build time, and the post embeds the WebP URL.
+*/ -}}
 {{- $u := urls.Parse .Destination -}}
 {{- $src := .Destination -}}
 {{- if not $u.IsAbs -}}
   {{- with .Page.Resources.Get $u.Path -}}
     {{- $src = .Permalink -}}
+    {{- if eq .MediaType.SubType "png" -}}
+      {{- $src = (.Process "webp q85").Permalink -}}
+    {{- end -}}
   {{- else -}}
     {{- $src = .Destination | absURL -}}
   {{- end -}}
