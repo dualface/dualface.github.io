@@ -16,8 +16,8 @@ home = ["HTML", "RSS"]
 # Social metadata (OpenGraph / Twitter Card)
 env = "production"
 author = "dualface"
-# Default share image: static/images/share.png
-images = ["images/share.png"]
+# Default share image: static/images/share.webp
+images = ["images/share.webp"]
 defaultTheme = "auto"
 
 # Full text in RSS, for Buttondown RSS-to-email
